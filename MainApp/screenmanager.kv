@@ -1,0 +1,475 @@
+#:import random random.random
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import BoxLayout kivy.uix.boxlayout
+#:import hex kivy.utils.get_color_from_hex
+#:import Spinner kivy.uix.spinner
+
+MyScreenManager:
+
+    transition: FadeTransition()
+    FirstScreen:
+    SecondScreen:
+    ThirdScreen:
+    FourthScreen:
+    FifthScreen:
+    SixthScreen:
+
+
+<FirstScreen>:
+
+    name: 'mainmenu'
+
+    canvas.before:
+        Color:
+            rgba: hex('#404040') # #404040
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 20
+
+        Label:
+            text: 'Main Menu'
+            # color: hex('#000000')
+            font_size: 75
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.5
+            size_hint_y: 1.1
+
+        Button:
+            text: 'GG Calculator'
+            font_size:50
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.5
+            size_hint_y:1
+            on_release: app.root.current = 'second'
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Promoters'
+            font_size: 50
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.5
+            on_release: app.root.current = 'third'
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Genes'
+            font_size: 50
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.5
+            on_release: app.root.current = 'fourth'
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: '5-UTR'
+            font_size: 50
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.5
+
+            on_release: app.root.current = 'fifth'
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Sequence Generator'
+            font_size: 50
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.5
+
+            on_release: app.root.current = 'sixth'
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Settings'
+            font_size: 50
+            on_release: app.open_settings()
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.5
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Exit'
+            font_size: 50
+            on_release: app.open_settings()
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.5
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            on_press: app.stop()
+
+
+
+<SecondScreen>:
+
+    name: 'second'
+
+    BoxLayout:
+
+
+
+        orientation: 'vertical'
+
+        TextInput:
+            text: 'Backbone Length'
+
+        TextInput:
+            text: 'Insert Length'
+
+
+        Label:
+            text: 'second screen!'
+            font_size: 30
+
+        Image:
+            source: 'colours2.png'
+            allow_stretch: True
+            keep_ratio: False
+
+
+
+        BoxLayout:
+
+            Button:
+                text: 'goto first screen'
+                font_size: 30
+                on_release: app.root.current = 'mainmenu'
+
+            Button:
+                text: 'get random colour screen'
+                font_size: 30
+                on_release: app.root.new_colour_screen()
+
+<ThirdScreen>:
+    name: 'third'
+
+    canvas.before:
+        Color:
+            rgba: hex('#404040')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+
+    FloatLayout:
+
+        Button:
+            text: 'Menu'
+            font_size: 50
+            size_hint: (.2, .1)
+            pos_hint: {"x": .00, "y": .9}
+            on_release: app.root.current = 'mainmenu'
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image:
+            source: 'promoter-specification.png'
+            size_hint: (.1, .1)
+            pos_hint: {"x": .25, "y":.9 }
+            allow_stretch: False
+            keep_ratio: False
+
+        Spinner:
+            id: promoterspinner
+            text: 'Promoters'
+            size_hint: (.6, .1)
+            pos_hint: {"x": .4, "y":.9}
+            values: root.name_list
+            on_text: print("The spinner {} has text {}".format(self, self.text))
+            on_text: print(type(self.text))
+            on_text: root.updating_text_box()
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        TextInput:
+            id: promoterInfo
+            pos_hint: {"x": 0, "y":0}
+            size_hint_y: .9
+            # height: self.texture_size[1]
+            text_size: self.width, None
+            text: 'Promoter Info'
+
+
+
+        # Label:
+            # id: associatedInfo
+            # text: 'This is where the promoter info goes'
+            # color: hex('#00000')
+            # font_size: 50
+            # size_hint: (0.9, .9)
+            # pos_hint: {"x": 0, "y":0}
+            # canvas.before:
+                # Color:
+                    # rgba: hex('#ffffff')
+                # Rectangle:
+                    # pos: self.pos
+                    # size: self.size
+
+
+<FourthScreen>:
+    name: 'fourth'
+
+    canvas.before:
+        Color:
+            rgba: hex('#404040')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+
+        Button:
+            text: 'Menu'
+            font_size: 50
+            size_hint: (.2, .1)
+            pos_hint: {"x": .00, "y": .9}
+            on_release: app.root.current = 'mainmenu'
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+
+        Image:
+            source: 'cds-specification.png'
+            size_hint: (.1, .1)
+            pos_hint: {"x": .25, "y":.9 }
+            allow_stretch: False
+            keep_ratio: False
+
+        Spinner:
+            id: genespinner
+            text: 'Genes'
+            size_hint: (.6, .1)
+            pos_hint: {"x": .4, "y":.9}
+            values: root.name_list
+            on_text: print("The spinner {} has text {}".format(self, self.text))
+            on_text: print(type(self.text))
+            on_text: root.updating_text_box()
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        TextInput:
+            id: geneInfo
+            pos_hint: {"x": 0, "y":0}
+            size_hint_y: 0.9
+            text_size: self.width, None
+            text: 'Gene Info'
+
+        # Button:
+            # text: 'Menu'
+            # font_size: 50
+            # size_hint: (.1, .9)
+            # pos_hint: {"x": .8999, "y": 0}
+            # on_release: app.root.current = 'mainmenu'
+
+<FifthScreen>:
+
+    name: 'fifth'
+
+    canvas.before:
+        Color:
+            rgba: hex('#404040')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+
+        Button:
+            text: 'Menu'
+            font_size: 50
+            size_hint: (.2, .1)
+            pos_hint: {"x": .00, "y": .9}
+            on_release: app.root.current = 'mainmenu'
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image:
+            source: 'ribosome-entry-site-specification.png'
+            size_hint: (.1, .1)
+            pos_hint: {"x": .25, "y":.9 }
+            allow_stretch: False
+            keep_ratio: False
+
+        Spinner:
+            id: utrSpinner
+            text: '5UTR'
+            size_hint: (.6, .1)
+            pos_hint: {"x": .4, "y":.9}
+            values: root.name_list
+            on_text: print("The spinner {} has text {}".format(self, self.text))
+            on_text: print(type(self.text))
+            on_text: root.updating_text_box()
+
+
+        TextInput:
+            id: utrInfo
+            pos_hint: {"x": 0, "y":0}
+            size_hint_y: .9
+            text_size: self.width, None
+            text: 'UTR Info'
+
+
+<SixthScreen>:
+    name: 'sixth'
+
+    canvas.before:
+        Color:
+            rgba: hex('#404040')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        Image:
+            source: 'dsNA-specification.png'
+            size_hint: (.3, .1)
+            pos_hint: {"x": .005, "y":.9 }
+            allow_stretch: False
+
+        Spinner:
+
+            id: utrSpinner
+            text: '5UTR'
+            size_hint: (.7, .1)
+            pos_hint: {"x": .3, "y":.9}
+            values: root.name_list
+            on_text: print("The spinner {} has text {}".format(self, self.text))
+            on_text: print(type(self.text))
+            on_text: root.updating_text_box()
+
+            canvas.before:
+                Color:
+                    rgba: hex('#ffffff')
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        TextInput:
+            id: utrInfo
+            pos_hint: {"x": 0, "y":0}
+            size_hint: (0.9, .9)
+            text_size: self.width, None
+            text: 'UTR Info'
+
+
+        Button:
+            text: 'Menu'
+            font_size: 50
+            size_hint: (.1, .9)
+            pos_hint: {"x": .8999, "y": 0}
+            on_release: app.root.current = 'mainmenu'
+
+
+
+
+<ColourScreen>:
+    BoxLayout:
+
+        orientation: 'vertical'
+        colour: random(), random(), random(), 1
+
+        Label:
+            text: 'colour {:.2},{:.2},{:.2} screen'.format(*root.colour[:3])
+            font_size: 30
+
+        Widget:
+
+            canvas:
+
+                Color:
+                    rgba: root.colour
+
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+
+        BoxLayout:
+
+            Button:
+                text: 'goto first screen'
+                font_size: 30
+                on_release: app.root.current = 'mainmenu'
+
+            Button:
+                text: 'get random colour screen'
+                font_size: 30
+                on_release: app.root.new_colour_screen()
