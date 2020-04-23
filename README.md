@@ -16,9 +16,15 @@ assembled into expression cassettes.
 
 ![alt text](https://github.com/jzUCL/C.Reinhardtii-Project/blob/master/Images/MainScreen.png?raw=true)
 
-The assembled cassette sequences, containing all the relevant fusion 
-and restriction sites can then be inspected and extracted for further analysis. Additional features are also 
-currently in development. For example, an assembly reaction calculator module, where once the desired plasmid 
+![alt text](https://github.com/jzUCL/C.Reinhardtii-Project/blob/master/Images/DatabaseExploration.png?raw=true)
+
+![alt text](https://github.com/jzUCL/C.Reinhardtii-Project/blob/master/Images/SequenceEditor.png?raw=true)
+
+The assembled cassette sequences, containing all the relevant fusion and restriction sites can then be inspected and extracted for further analysis. 
+
+![alt text](https://github.com/jzUCL/C.Reinhardtii-Project/blob/master/Images/SequenceEditor2.png?raw=true)
+
+Additional features are also currently in development. For example, an assembly reaction calculator module, where once the desired plasmid 
 parts are obtained, the assembly reaction stoichiometry is calculated based on DNA concentration. Additionally, 
 we aim to integrate construct sequence file extraction in GenBank format (Benson et al., 2013), which would allow 
 for sequence annotations of each element in the construct including restriction, fusion sites. As the framework 
